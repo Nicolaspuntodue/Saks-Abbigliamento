@@ -10,12 +10,17 @@ python3 -m http.server 5173
 ## Direzione
 - **Riferimento:** verostudio.com (serif con corsivi alternati, ritmo editoriale lento); Awwwards: Sartoria Vinci Uomo, LuceSposa, Maison Augé.
 - **Coerenza col sito attuale:** logo blackletter "man Saks woman", foto reali dei clienti, marchi (Cautieri, Musani…), "su misura fino alla taglia 75", WhatsApp come CTA.
-- **Palette:** bone `#F2EEE8` · inchiostro `#14161D` · notte `#1B2440` (blu Cautieri) · cipria `#E8CDD0` · ottone `#B39062` (solo dettagli).
+- **Palette:** latte `#F3EEE6` · espresso `#231A15` · vino `#4A1822` · champagne `#D8C2A0` · moka `#7A5E4C`.
 - **Font:** Cormorant Garamond (display, corsivi) + Hanken Grotesk (testo/UI).
-- **3D/WebGL:** un solo telo di seta (shader) dietro la pagina: le pieghe si muovono con lo scroll e diventa "notte" nelle sezioni scure. Fallback CSS senza WebGL, `prefers-reduced-motion` rispettato.
+- **3D/WebGL:** un solo telo di seta (shader) dietro la pagina: le pieghe si muovono con lo scroll e diventa "vino" nelle sezioni scure. Fallback CSS senza WebGL, `prefers-reduced-motion` rispettato.
 
-## Sezioni
-Hero · Manifesto (parole che si accendono) · Occasioni (scroll orizzontale fissato) · Processo su misura (arco sticky) · Taglia 75 · Maison + marquee marchi · Testimonianza · Atelier/contatti.
+## Sezioni (scroll-driven, stile Vero)
+1. Hero: foto a tutto schermo che si richiude in un arco da atelier, il titolo si stringe negli angoli.
+2. Essenza: la piccola foto sotto il titolo cresce fino a coprire lo schermo.
+3. Sequenza fissata: "Dalla scelta, alle misure, al tuo giorno" — le foto scorrono a tendina mentre si accendono le parole.
+4. Occasioni: scroll orizzontale fissato.
+5. Collage: foto in parallasse a profondità diverse + testo che si accende parola per parola.
+6. Taglia 75 · Maison + marquee che accelera con lo scroll · Testimonianza · Atelier/contatti.
 
 ## Da verificare col cliente
 - Orari (presi da matrimonio.com, potrebbero essere vecchi).

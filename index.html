@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Saks Cerimonia — Abiti su misura a Chieti Scalo</title>
   <meta name="description" content="Saks Abiti da Cerimonia a Chieti Scalo: abiti uomo, donna e bambino cuciti e personalizzati su misura, fino alla taglia 75. Rivenditore Cautieri e Musani.">
-  <meta name="theme-color" content="#F2EEE8">
+  <meta name="theme-color" content="#F3EEE6">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -22,8 +22,8 @@
       <img src="assets/img/logo-white.png" alt="Saks — man woman" width="120" height="70">
     </a>
     <nav class="nav__links" aria-label="Principale">
-      <a href="#occasioni">Occasioni</a>
       <a href="#su-misura">Su misura</a>
+      <a href="#occasioni">Occasioni</a>
       <a href="#maison">Maison</a>
       <a href="#atelier">Atelier</a>
     </nav>
@@ -31,33 +31,57 @@
   </header>
 
   <main id="main">
-    <!-- 1 · HERO -->
+    <!-- 1 · HERO — full-bleed photo shrinks into an atelier arch -->
     <section class="hero" id="top">
-      <p class="eyebrow hero__eyebrow"><span>Chieti Scalo</span><span>Abiti da cerimonia</span></p>
+      <div class="hero__frame">
+        <img src="assets/img/cautieri-20.webp" alt="Sposo in smoking blu e oro Cautieri" fetchpriority="high">
+      </div>
       <h1 class="hero__title">
-        <span class="line"><span><em>Cucito</em> su di te,</span></span>
-        <span class="line"><span><em>per il giorno</em> che resta.</span></span>
+        <span class="hero__l1"><span class="mask"><span><em>Cucito</em> su di te,</span></span></span>
+        <span class="hero__l2"><span class="mask"><span><em>per il giorno</em> che resta.</span></span></span>
       </h1>
-      <div class="hero__foot">
-        <p class="hero__lead">Abiti da cerimonia uomo, donna e bambino — scelti, cuciti e personalizzati su misura nel nostro atelier.</p>
-        <span class="scrollcue" aria-hidden="true">Scorri</span>
+      <p class="hero__meta"><span>Abiti da cerimonia</span><span>Chieti Scalo</span></p>
+    </section>
+
+    <!-- 2 · ESSENZA — tiny image grows to fill the screen -->
+    <section class="essenza">
+      <div class="essenza__pin">
+        <p class="eyebrow"><em>l'</em>essenza <em>di</em> Saks</p>
+        <h2 class="essenza__title" data-split><em>dove la</em> sartoria<br><em>incontra il</em> tuo giorno</h2>
+        <div class="essenza__media">
+          <img src="assets/img/sposi.webp" alt="Coppia di sposi vestiti da Saks all'uscita dalla cerimonia">
+          <p class="essenza__caption">Uomo, donna, bambino. Ogni abito nasce in atelier, <em>prova dopo prova.</em></p>
+        </div>
       </div>
     </section>
 
-    <!-- 2 · MANIFESTO -->
-    <section class="manifesto">
-      <p class="eyebrow"><em>l'</em>essenza <em>di</em> Saks</p>
-      <p class="manifesto__text" data-words>
-        Un abito da cerimonia si indossa una volta, ma resta in ogni fotografia, in ogni ricordo. Per questo non lo vendiamo soltanto: lo costruiamo insieme a te, dal tessuto all'ultimo bottone.
-      </p>
+    <!-- 3 · SEQUENZA — Dalla scelta, alle misure, al tuo giorno -->
+    <section class="seq" id="su-misura">
+      <div class="seq__pin">
+        <figure class="seq__img"><img src="assets/img/cautieri-7.webp" alt="Abito Cautieri blu notte con gilet" loading="lazy"></figure>
+        <figure class="seq__img"><img src="assets/img/doppiopetto.webp" alt="Doppio petto azzurro cucito su misura" loading="lazy"></figure>
+        <figure class="seq__img"><img src="assets/img/sposo-cautieri.webp" alt="Sposo in Cautieri accanto alla sposa" loading="lazy"></figure>
+        <div class="seq__veil" aria-hidden="true"></div>
+        <ol class="seq__dots" aria-hidden="true"><li></li><li></li><li></li></ol>
+        <div class="seq__notes">
+          <p><span>I</span>Sfogli con noi le collezioni dei migliori marchi italiani e trovi il modello che ti somiglia.</p>
+          <p><span>II</span>Tessuti, revers, fodere, ricami. Poi le prove: i sarti lo adattano a te, fino alla taglia 75.</p>
+          <p><span>III</span>Ritiri un abito che sembra cucito addosso — perché lo è.</p>
+        </div>
+        <h2 class="seq__line">
+          <span><em>Dalla</em> scelta,</span>
+          <span><em>alle</em> misure,</span>
+          <span><em>al</em> tuo giorno.</span>
+        </h2>
+      </div>
     </section>
 
-    <!-- 3 · OCCASIONI (pinned horizontal) -->
+    <!-- 4 · OCCASIONI (pinned horizontal) -->
     <section class="occasioni" id="occasioni">
       <div class="occasioni__pin">
         <header class="occasioni__head">
           <p class="eyebrow">Le occasioni</p>
-          <h2 class="h2"><em>Ogni</em> festa <em>ha il suo</em> abito.</h2>
+          <h2 class="h2" data-split><em>Ogni</em> festa <em>ha il suo</em> abito.</h2>
         </header>
         <div class="occasioni__track">
           <article class="card"><figure><img src="assets/img/sposo-cautieri.webp" alt="Sposo in abito Cautieri su misura accanto alla sposa" loading="lazy"></figure><p class="card__n">01</p><h3>Lo sposo</h3><p>Cautieri cerimonia, cucito e personalizzato fino al ricamo del nome.</p></article>
@@ -70,40 +94,31 @@
       </div>
     </section>
 
-    <!-- 4 · SU MISURA (sticky process) -->
-    <section class="process" id="su-misura">
-      <div class="process__media" aria-hidden="true">
-        <img src="assets/img/cautieri-7.webp" alt="" class="is-active">
-        <img src="assets/img/musani-4.webp" alt="">
-        <img src="assets/img/doppiopetto.webp" alt="">
-        <img src="assets/img/sposi.webp" alt="">
-      </div>
-      <div class="process__steps">
-        <header>
-          <p class="eyebrow"><em>un</em> processo <em>sartoriale</em></p>
-          <h2 class="h2"><em>Dalla</em> scelta, <em>alle</em> misure, <em>al</em> tuo giorno.</h2>
-        </header>
-        <ol>
-          <li data-step="0"><span>I</span><h3>La scelta</h3><p>Sfogli con noi le collezioni dei migliori marchi italiani e trovi il modello che ti somiglia.</p></li>
-          <li data-step="1"><span>II</span><h3>Tessuti <em>&amp;</em> dettagli</h3><p>Lane pregiate, sete, satin. Revers, fodere, bottoni, ricami: ogni scelta è tua.</p></li>
-          <li data-step="2"><span>III</span><h3>Le prove</h3><p>I nostri sarti adattano l'abito alle tue forme, prova dopo prova. Su misura fino alla taglia 75.</p></li>
-          <li data-step="3"><span>IV</span><h3>Il giorno</h3><p>Ritiri un abito che sembra cucito addosso — perché lo è.</p></li>
-        </ol>
-        <a class="btn" href="https://wa.me/390871562682?text=Ciao%20Saks%2C%20vorrei%20prenotare%20una%20prova" target="_blank" rel="noopener">Prenota la tua prova</a>
+    <!-- 5 · COLLAGE — floating photos in parallax around the headline -->
+    <section class="collage">
+      <figure class="collage__f f1" data-speed="-.35"><img src="assets/img/musani-4.webp" alt="" loading="lazy"></figure>
+      <figure class="collage__f f2" data-speed=".25"><img src="assets/img/mamma-musani.webp" alt="" loading="lazy"></figure>
+      <figure class="collage__f f3" data-speed="-.15"><img src="assets/img/invitata-francesca.webp" alt="" loading="lazy"></figure>
+      <figure class="collage__f f4" data-speed=".4"><img src="assets/img/bambino.webp" alt="" loading="lazy"></figure>
+      <div class="collage__body">
+        <p class="eyebrow"><em>un</em> abito <em>per</em> sempre</p>
+        <h2 class="collage__title" data-split><em>così</em> diventi<br>indimenticabile.</h2>
+        <p class="collage__lead">Si indossa una volta. <em>Resta in ogni fotografia.</em></p>
+        <p class="collage__text" data-words>Per questo non lo vendiamo soltanto: lo costruiamo insieme a te, dal tessuto all'ultimo bottone, con i sarti del nostro atelier di Chieti Scalo.</p>
       </div>
     </section>
 
-    <!-- 5 · TAGLIA 75 statement -->
+    <!-- 6 · TAGLIA 75 statement -->
     <section class="statement">
       <p class="statement__big" aria-hidden="true"><span data-count="75">75</span></p>
-      <p class="statement__text"><em>Fino alla</em> taglia 75. <em>Perché</em> l'eleganza <em>non ha</em> una misura sola.</p>
+      <p class="statement__text" data-split><em>Fino alla</em> taglia 75. <em>Perché</em> l'eleganza <em>non ha</em> una misura sola.</p>
     </section>
 
-    <!-- 6 · MAISON (brands) -->
+    <!-- 7 · MAISON (brands) -->
     <section class="maison" id="maison">
       <header class="maison__head">
         <p class="eyebrow">Rivenditore autorizzato · Chieti &amp; Pescara</p>
-        <h2 class="h2"><em>Le</em> maison <em>che</em> vestiamo.</h2>
+        <h2 class="h2" data-split><em>Le</em> maison <em>che</em> vestiamo.</h2>
       </header>
       <div class="maison__split">
         <a class="maison__tile" href="https://www.saksabitidacerimonia.it/cautieri-abiti-da-cerimonia/" target="_blank" rel="noopener">
@@ -122,21 +137,21 @@
       </div>
     </section>
 
-    <!-- 7 · VOICE -->
+    <!-- 8 · VOICE -->
     <section class="voice">
       <figure>
         <img src="assets/img/coppia-invitati.webp" alt="Coppia di invitati in abito da cerimonia al tramonto" loading="lazy">
       </figure>
       <blockquote>
-        <p>“L'abito ha riscosso un enorme successo, ho ricevuto tantissimi complimenti.”</p>
+        <p data-split>“L'abito ha riscosso un enorme successo, ho ricevuto tantissimi complimenti.”</p>
         <cite>Paola · testimone di nozze</cite>
       </blockquote>
     </section>
 
-    <!-- 8 · ATELIER / CTA -->
+    <!-- 9 · ATELIER / CTA -->
     <section class="atelier" id="atelier">
       <p class="eyebrow"><em>il tuo</em> abito</p>
-      <h2 class="atelier__title"><em>merita di essere</em> cucito <em>su misura.</em></h2>
+      <h2 class="atelier__title" data-split><em>merita di essere</em> cucito <em>su misura.</em></h2>
       <a class="btn btn--light" href="https://wa.me/390871562682?text=Ciao%20Saks%2C%20vorrei%20prenotare%20una%20prova" target="_blank" rel="noopener">Scrivici su WhatsApp</a>
       <div class="atelier__info">
         <div><h3>Atelier</h3><p>Via Torquato Scaraviglia, 16<br>66100 Chieti Scalo (CH)</p><a href="https://maps.google.com/?q=Saks+Abbigliamento+da+Cerimonia+Via+Scaraviglia+16+Chieti" target="_blank" rel="noopener">Indicazioni →</a></div>
