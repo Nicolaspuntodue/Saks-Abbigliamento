@@ -140,7 +140,7 @@ html:not(.js) .loader, .no-pin .loader { display: none; }
 .essenza__title { font: 300 clamp(2.6rem, 6.2vw, 6.4rem)/.95 var(--serif); letter-spacing: -.025em; text-transform: uppercase; }
 .essenza__media { position: absolute; inset: 0; }
 .js .essenza__media { clip-path: inset(64% 45% 12% 45%); }
-.essenza__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; }
+.essenza__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 6%; transform-origin: 50% 0%; } /* keep the faces in frame */
 .essenza__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(35, 26, 21, .6), transparent 50%); opacity: var(--shade, 0); }
 .essenza__caption {
   position: absolute; z-index: 1; left: var(--gutter); bottom: clamp(2rem, 8vh, 4rem);
