@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Saks Cerimonia — Abiti su misura a Chieti Scalo</title>
+  <meta name="description" content="Saks Abiti da Cerimonia a Chieti Scalo: abiti uomo, donna e bambino cuciti e personalizzati su misura, fino alla taglia 75. Rivenditore Cautieri e Musani.">
+  <meta name="theme-color" content="#F2EEE8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Vai al contenuto</a>
+
+  <!-- WebGL silk: fixed behind everything, driven by scroll -->
+  <canvas id="silk" aria-hidden="true"></canvas>
+
+  <header class="nav" data-nav>
+    <a href="#top" class="nav__logo" aria-label="Saks Cerimonia, torna su">
+      <img src="assets/img/logo-white.png" alt="Saks — man woman" width="120" height="70">
+    </a>
+    <nav class="nav__links" aria-label="Principale">
+      <a href="#occasioni">Occasioni</a>
+      <a href="#su-misura">Su misura</a>
+      <a href="#maison">Maison</a>
+      <a href="#atelier">Atelier</a>
+    </nav>
+    <a class="btn btn--sm" href="https://wa.me/390871562682?text=Ciao%20Saks%2C%20vorrei%20prenotare%20una%20prova" target="_blank" rel="noopener">Prenota la prova</a>
+  </header>
+
+  <main id="main">
+    <!-- 1 · HERO -->
+    <section class="hero" id="top">
+      <p class="eyebrow hero__eyebrow"><span>Chieti Scalo</span><span>Abiti da cerimonia</span></p>
+      <h1 class="hero__title">
+        <span class="line"><span><em>Cucito</em> su di te,</span></span>
+        <span class="line"><span><em>per il giorno</em> che resta.</span></span>
+      </h1>
+      <div class="hero__foot">
+        <p class="hero__lead">Abiti da cerimonia uomo, donna e bambino — scelti, cuciti e personalizzati su misura nel nostro atelier.</p>
+        <span class="scrollcue" aria-hidden="true">Scorri</span>
+      </div>
+    </section>
+
+    <!-- 2 · MANIFESTO -->
+    <section class="manifesto">
+      <p class="eyebrow"><em>l'</em>essenza <em>di</em> Saks</p>
+      <p class="manifesto__text" data-words>
+        Un abito da cerimonia si indossa una volta, ma resta in ogni fotografia, in ogni ricordo. Per questo non lo vendiamo soltanto: lo costruiamo insieme a te, dal tessuto all'ultimo bottone.
+      </p>
+    </section>
+
+    <!-- 3 · OCCASIONI (pinned horizontal) -->
+    <section class="occasioni" id="occasioni">
+      <div class="occasioni__pin">
+        <header class="occasioni__head">
+          <p class="eyebrow">Le occasioni</p>
+          <h2 class="h2"><em>Ogni</em> festa <em>ha il suo</em> abito.</h2>
+        </header>
+        <div class="occasioni__track">
+          <article class="card"><figure><img src="assets/img/sposo-cautieri.webp" alt="Sposo in abito Cautieri su misura accanto alla sposa" loading="lazy"></figure><p class="card__n">01</p><h3>Lo sposo</h3><p>Cautieri cerimonia, cucito e personalizzato fino al ricamo del nome.</p></article>
+          <article class="card"><figure><img src="assets/img/mamma-musani.webp" alt="Mamma della sposa in Musani accanto alla figlia sposa" loading="lazy"></figure><p class="card__n">02</p><h3>La mamma <em>della sposa</em></h3><p>Musani Couture: paillettes, satin e linee pensate per lei.</p></article>
+          <article class="card"><figure><img src="assets/img/invitata-francesca.webp" alt="Invitata in abito lungo verde smeraldo" loading="lazy"></figure><p class="card__n">03</p><h3>Invitati <em>speciali</em></h3><p>Testimoni, ospiti, coppie: eleganza coordinata per tutta la famiglia.</p></article>
+          <article class="card"><figure><img src="assets/img/bambino.webp" alt="Bambino in abito da cerimonia blu Cautieri" loading="lazy"></figure><p class="card__n">04</p><h3>Piccoli <em>uomini</em></h3><p>Comunioni, battesimi, paggetti: la collezione cerimonia bambino.</p></article>
+          <article class="card"><figure><img src="assets/img/laurea.webp" alt="Neolaureata in completo avorio satinato" loading="lazy"></figure><p class="card__n">05</p><h3>Lauree <em>&amp;</em> traguardi</h3><p>Giacca e pantalone avorio, linee pulite: il successo ha un taglio.</p></article>
+          <article class="card"><figure><img src="assets/img/gemelli.webp" alt="Due festeggiati in abito nero al loro sessantesimo compleanno" loading="lazy"></figure><p class="card__n">06</p><h3>Compleanni</h3><p>18 o 60 anni, un traguardo merita un'eleganza su misura.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 · SU MISURA (sticky process) -->
+    <section class="process" id="su-misura">
+      <div class="process__media" aria-hidden="true">
+        <img src="assets/img/cautieri-7.webp" alt="" class="is-active">
+        <img src="assets/img/musani-4.webp" alt="">
+        <img src="assets/img/doppiopetto.webp" alt="">
+        <img src="assets/img/sposi.webp" alt="">
+      </div>
+      <div class="process__steps">
+        <header>
+          <p class="eyebrow"><em>un</em> processo <em>sartoriale</em></p>
+          <h2 class="h2"><em>Dalla</em> scelta, <em>alle</em> misure, <em>al</em> tuo giorno.</h2>
+        </header>
+        <ol>
+          <li data-step="0"><span>I</span><h3>La scelta</h3><p>Sfogli con noi le collezioni dei migliori marchi italiani e trovi il modello che ti somiglia.</p></li>
+          <li data-step="1"><span>II</span><h3>Tessuti <em>&amp;</em> dettagli</h3><p>Lane pregiate, sete, satin. Revers, fodere, bottoni, ricami: ogni scelta è tua.</p></li>
+          <li data-step="2"><span>III</span><h3>Le prove</h3><p>I nostri sarti adattano l'abito alle tue forme, prova dopo prova. Su misura fino alla taglia 75.</p></li>
+          <li data-step="3"><span>IV</span><h3>Il giorno</h3><p>Ritiri un abito che sembra cucito addosso — perché lo è.</p></li>
+        </ol>
+        <a class="btn" href="https://wa.me/390871562682?text=Ciao%20Saks%2C%20vorrei%20prenotare%20una%20prova" target="_blank" rel="noopener">Prenota la tua prova</a>
+      </div>
+    </section>
+
+    <!-- 5 · TAGLIA 75 statement -->
+    <section class="statement">
+      <p class="statement__big" aria-hidden="true"><span data-count="75">75</span></p>
+      <p class="statement__text"><em>Fino alla</em> taglia 75. <em>Perché</em> l'eleganza <em>non ha</em> una misura sola.</p>
+    </section>
+
+    <!-- 6 · MAISON (brands) -->
+    <section class="maison" id="maison">
+      <header class="maison__head">
+        <p class="eyebrow">Rivenditore autorizzato · Chieti &amp; Pescara</p>
+        <h2 class="h2"><em>Le</em> maison <em>che</em> vestiamo.</h2>
+      </header>
+      <div class="maison__split">
+        <a class="maison__tile" href="https://www.saksabitidacerimonia.it/cautieri-abiti-da-cerimonia/" target="_blank" rel="noopener">
+          <figure><img src="assets/img/cautieri-20.webp" alt="Modello in smoking blu e oro Cautieri" loading="lazy"></figure>
+          <span class="maison__tag">Uomo</span><h3>Cautieri</h3>
+        </a>
+        <a class="maison__tile" href="https://www.saksabitidacerimonia.it/musani-couture-abiti-da-cerimonia-donna/" target="_blank" rel="noopener">
+          <figure><img src="assets/img/musani-2.webp" alt="Modella in abito lungo giallo Musani Couture" loading="lazy"></figure>
+          <span class="maison__tag">Donna</span><h3>Musani <em>Couture</em></h3>
+        </a>
+      </div>
+      <div class="marquee" aria-label="Altri marchi disponibili: Luigi Convertini, Francesco Spera, Tiber, Impero, San Germano, Caroline M, Glamour Girl, La Martina, Gavioli, Soani, JM Couture, Luigi Auletta, Papillon">
+        <div class="marquee__row" aria-hidden="true">
+          <span>Luigi Convertini</span><span>Francesco Spera</span><span>Tiber</span><span>Impero</span><span>San Germano</span><span>Caroline M</span><span>Glamour Girl</span><span>La Martina</span><span>Gavioli</span><span>Soani</span><span>JM Couture</span><span>Luigi Auletta</span><span>Papillon</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 · VOICE -->
+    <section class="voice">
+      <figure>
+        <img src="assets/img/coppia-invitati.webp" alt="Coppia di invitati in abito da cerimonia al tramonto" loading="lazy">
+      </figure>
+      <blockquote>
+        <p>“L'abito ha riscosso un enorme successo, ho ricevuto tantissimi complimenti.”</p>
+        <cite>Paola · testimone di nozze</cite>
+      </blockquote>
+    </section>
+
+    <!-- 8 · ATELIER / CTA -->
+    <section class="atelier" id="atelier">
+      <p class="eyebrow"><em>il tuo</em> abito</p>
+      <h2 class="atelier__title"><em>merita di essere</em> cucito <em>su misura.</em></h2>
+      <a class="btn btn--light" href="https://wa.me/390871562682?text=Ciao%20Saks%2C%20vorrei%20prenotare%20una%20prova" target="_blank" rel="noopener">Scrivici su WhatsApp</a>
+      <div class="atelier__info">
+        <div><h3>Atelier</h3><p>Via Torquato Scaraviglia, 16<br>66100 Chieti Scalo (CH)</p><a href="https://maps.google.com/?q=Saks+Abbigliamento+da+Cerimonia+Via+Scaraviglia+16+Chieti" target="_blank" rel="noopener">Indicazioni →</a></div>
+        <div><h3>Orari</h3><p>Lun 16:00 – 20:00<br>Mar – Sab 9:30 – 13:00 · 16:00 – 20:00<br>Domenica chiuso</p></div>
+        <div><h3>Contatti</h3><p><a href="tel:+390871562682">0871 562682</a> · WhatsApp<br><a href="https://www.instagram.com/sakscerimonia/" target="_blank" rel="noopener">@sakscerimonia</a></p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <img src="assets/img/logo-white.png" alt="Saks" width="90" height="52">
+    <p>Saks Abiti da Cerimonia · Chieti Scalo · © 2026</p>
+    <p class="footer__demo">Concept demo — Punto Due Studio</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }</script>
+  <script type="module" src="main.js"></script>
+</body>
+</html>
