@@ -9,10 +9,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/img/cautieri-20-800.webp" imagesrcset="assets/img/cautieri-20-800.webp 800w, assets/img/cautieri-20.webp 1400w" imagesizes="100vw">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <a class="skip" href="#main">Vai al contenuto</a>
+
+  <div class="loader" aria-hidden="true"><img src="assets/img/logo-white.png" alt="" width="140" height="82"><span class="loader__bar"></span></div>
+  <div class="progress" aria-hidden="true"></div>
 
   <!-- WebGL silk: fixed behind everything, driven by scroll -->
   <canvas id="silk" aria-hidden="true"></canvas>
@@ -34,7 +38,7 @@
     <!-- 1 · HERO — full-bleed photo shrinks into an atelier arch -->
     <section class="hero" id="top">
       <div class="hero__frame">
-        <img src="assets/img/cautieri-20.webp" alt="Sposo in smoking blu e oro Cautieri" fetchpriority="high">
+        <img src="assets/img/cautieri-20.webp" srcset="assets/img/cautieri-20-800.webp 800w, assets/img/cautieri-20.webp 1400w" sizes="100vw" decoding="async" alt="Sposo in smoking blu e oro Cautieri" fetchpriority="high">
       </div>
       <h1 class="hero__title">
         <span class="hero__l1"><span class="mask"><span><em>Cucito</em> su di te,</span></span></span>
@@ -49,7 +53,7 @@
         <p class="eyebrow"><em>l'</em>essenza <em>di</em> Saks</p>
         <h2 class="essenza__title" data-split><em>dove la</em> sartoria<br><em>incontra il</em> tuo giorno</h2>
         <div class="essenza__media">
-          <img src="assets/img/sposi.webp" alt="Coppia di sposi vestiti da Saks all'uscita dalla cerimonia">
+          <img src="assets/img/sposi.webp" srcset="assets/img/sposi-800.webp 800w, assets/img/sposi.webp 1400w" sizes="100vw" decoding="async" alt="Coppia di sposi vestiti da Saks all'uscita dalla cerimonia">
           <p class="essenza__caption">Uomo, donna, bambino. Ogni abito nasce in atelier, <em>prova dopo prova.</em></p>
         </div>
       </div>
@@ -58,9 +62,9 @@
     <!-- 3 · SEQUENZA — Dalla scelta, alle misure, al tuo giorno -->
     <section class="seq" id="su-misura">
       <div class="seq__pin">
-        <figure class="seq__img"><img src="assets/img/cautieri-7.webp" alt="Abito Cautieri blu notte con gilet" loading="lazy"></figure>
-        <figure class="seq__img"><img src="assets/img/doppiopetto.webp" alt="Doppio petto azzurro cucito su misura" loading="lazy"></figure>
-        <figure class="seq__img"><img src="assets/img/sposo-cautieri.webp" alt="Sposo in Cautieri accanto alla sposa" loading="lazy"></figure>
+        <figure class="seq__img"><img src="assets/img/cautieri-7.webp" srcset="assets/img/cautieri-7-800.webp 800w, assets/img/cautieri-7.webp 1400w" sizes="100vw" decoding="async" alt="Abito Cautieri blu notte con gilet" loading="lazy"></figure>
+        <figure class="seq__img"><img src="assets/img/doppiopetto.webp" srcset="assets/img/doppiopetto-800.webp 800w, assets/img/doppiopetto.webp 1120w" sizes="100vw" decoding="async" alt="Doppio petto azzurro cucito su misura" loading="lazy"></figure>
+        <figure class="seq__img"><img src="assets/img/sposo-cautieri.webp" srcset="assets/img/sposo-cautieri-800.webp 800w, assets/img/sposo-cautieri.webp 1400w" sizes="100vw" decoding="async" alt="Sposo in Cautieri accanto alla sposa" loading="lazy"></figure>
         <div class="seq__veil" aria-hidden="true"></div>
         <ol class="seq__dots" aria-hidden="true"><li></li><li></li><li></li></ol>
         <div class="seq__notes">
@@ -84,22 +88,22 @@
           <h2 class="h2" data-split><em>Ogni</em> festa <em>ha il suo</em> abito.</h2>
         </header>
         <div class="occasioni__track">
-          <article class="card"><figure><img src="assets/img/sposo-cautieri.webp" alt="Sposo in abito Cautieri su misura accanto alla sposa" loading="lazy"></figure><p class="card__n">01</p><h3>Lo sposo</h3><p>Cautieri cerimonia, cucito e personalizzato fino al ricamo del nome.</p></article>
-          <article class="card"><figure><img src="assets/img/mamma-musani.webp" alt="Mamma della sposa in Musani accanto alla figlia sposa" loading="lazy"></figure><p class="card__n">02</p><h3>La mamma <em>della sposa</em></h3><p>Musani Couture: paillettes, satin e linee pensate per lei.</p></article>
-          <article class="card"><figure><img src="assets/img/invitata-francesca.webp" alt="Invitata in abito lungo verde smeraldo" loading="lazy"></figure><p class="card__n">03</p><h3>Invitati <em>speciali</em></h3><p>Testimoni, ospiti, coppie: eleganza coordinata per tutta la famiglia.</p></article>
-          <article class="card"><figure><img src="assets/img/bambino.webp" alt="Bambino in abito da cerimonia blu Cautieri" loading="lazy"></figure><p class="card__n">04</p><h3>Piccoli <em>uomini</em></h3><p>Comunioni, battesimi, paggetti: la collezione cerimonia bambino.</p></article>
-          <article class="card"><figure><img src="assets/img/laurea.webp" alt="Neolaureata in completo avorio satinato" loading="lazy"></figure><p class="card__n">05</p><h3>Lauree <em>&amp;</em> traguardi</h3><p>Giacca e pantalone avorio, linee pulite: il successo ha un taglio.</p></article>
-          <article class="card"><figure><img src="assets/img/gemelli.webp" alt="Due festeggiati in abito nero al loro sessantesimo compleanno" loading="lazy"></figure><p class="card__n">06</p><h3>Compleanni</h3><p>18 o 60 anni, un traguardo merita un'eleganza su misura.</p></article>
+          <article class="card"><figure><img src="assets/img/sposo-cautieri.webp" srcset="assets/img/sposo-cautieri-800.webp 800w, assets/img/sposo-cautieri.webp 1400w" sizes="(max-width: 860px) 76vw, 25vw" decoding="async" alt="Sposo in abito Cautieri su misura accanto alla sposa" loading="lazy"></figure><p class="card__n">01</p><h3>Lo sposo</h3><p>Cautieri cerimonia, cucito e personalizzato fino al ricamo del nome.</p></article>
+          <article class="card"><figure><img src="assets/img/mamma-musani.webp" srcset="assets/img/mamma-musani-800.webp 800w, assets/img/mamma-musani.webp 1400w" sizes="(max-width: 860px) 76vw, 25vw" decoding="async" alt="Mamma della sposa in Musani accanto alla figlia sposa" loading="lazy"></figure><p class="card__n">02</p><h3>La mamma <em>della sposa</em></h3><p>Musani Couture: paillettes, satin e linee pensate per lei.</p></article>
+          <article class="card"><figure><img src="assets/img/invitata-francesca.webp" srcset="assets/img/invitata-francesca-800.webp 800w, assets/img/invitata-francesca.webp 1400w" sizes="(max-width: 860px) 76vw, 25vw" decoding="async" alt="Invitata in abito lungo verde smeraldo" loading="lazy"></figure><p class="card__n">03</p><h3>Invitati <em>speciali</em></h3><p>Testimoni, ospiti, coppie: eleganza coordinata per tutta la famiglia.</p></article>
+          <article class="card"><figure><img src="assets/img/bambino.webp" srcset="assets/img/bambino-800.webp 800w, assets/img/bambino.webp 1400w" sizes="(max-width: 860px) 76vw, 25vw" decoding="async" alt="Bambino in abito da cerimonia blu Cautieri" loading="lazy"></figure><p class="card__n">04</p><h3>Piccoli <em>uomini</em></h3><p>Comunioni, battesimi, paggetti: la collezione cerimonia bambino.</p></article>
+          <article class="card"><figure><img src="assets/img/laurea.webp" srcset="assets/img/laurea-800.webp 800w, assets/img/laurea.webp 1400w" sizes="(max-width: 860px) 76vw, 25vw" decoding="async" alt="Neolaureata in completo avorio satinato" loading="lazy"></figure><p class="card__n">05</p><h3>Lauree <em>&amp;</em> traguardi</h3><p>Giacca e pantalone avorio, linee pulite: il successo ha un taglio.</p></article>
+          <article class="card"><figure><img src="assets/img/gemelli.webp" srcset="assets/img/gemelli-800.webp 800w, assets/img/gemelli.webp 1400w" sizes="(max-width: 860px) 76vw, 25vw" decoding="async" alt="Due festeggiati in abito nero al loro sessantesimo compleanno" loading="lazy"></figure><p class="card__n">06</p><h3>Compleanni</h3><p>18 o 60 anni, un traguardo merita un'eleganza su misura.</p></article>
         </div>
       </div>
     </section>
 
     <!-- 5 · COLLAGE — floating photos in parallax around the headline -->
     <section class="collage">
-      <figure class="collage__f f1" data-speed="-.35"><img src="assets/img/musani-4.webp" alt="" loading="lazy"></figure>
-      <figure class="collage__f f2" data-speed=".25"><img src="assets/img/mamma-musani.webp" alt="" loading="lazy"></figure>
-      <figure class="collage__f f3" data-speed="-.15"><img src="assets/img/invitata-francesca.webp" alt="" loading="lazy"></figure>
-      <figure class="collage__f f4" data-speed=".4"><img src="assets/img/bambino.webp" alt="" loading="lazy"></figure>
+      <figure class="collage__f f1"><img src="assets/img/musani-4.webp" alt="" loading="lazy"></figure>
+      <figure class="collage__f f2"><img src="assets/img/mamma-musani.webp" srcset="assets/img/mamma-musani-800.webp 800w, assets/img/mamma-musani.webp 1400w" sizes="(max-width: 860px) 30vw, 16vw" decoding="async" alt="" loading="lazy"></figure>
+      <figure class="collage__f f3"><img src="assets/img/invitata-francesca.webp" srcset="assets/img/invitata-francesca-800.webp 800w, assets/img/invitata-francesca.webp 1400w" sizes="(max-width: 860px) 30vw, 16vw" decoding="async" alt="" loading="lazy"></figure>
+      <figure class="collage__f f4"><img src="assets/img/bambino.webp" srcset="assets/img/bambino-800.webp 800w, assets/img/bambino.webp 1400w" sizes="(max-width: 860px) 30vw, 16vw" decoding="async" alt="" loading="lazy"></figure>
       <div class="collage__body">
         <p class="eyebrow"><em>un</em> abito <em>per</em> sempre</p>
         <h2 class="collage__title" data-split><em>così</em> diventi<br>indimenticabile.</h2>
@@ -122,7 +126,7 @@
       </header>
       <div class="maison__split">
         <a class="maison__tile" href="https://www.saksabitidacerimonia.it/cautieri-abiti-da-cerimonia/" target="_blank" rel="noopener">
-          <figure><img src="assets/img/cautieri-20.webp" alt="Modello in smoking blu e oro Cautieri" loading="lazy"></figure>
+          <figure><img src="assets/img/cautieri-20.webp" srcset="assets/img/cautieri-20-800.webp 800w, assets/img/cautieri-20.webp 1400w" sizes="(max-width: 860px) 100vw, 50vw" decoding="async" alt="Modello in smoking blu e oro Cautieri" loading="lazy"></figure>
           <span class="maison__tag">Uomo</span><h3>Cautieri</h3>
         </a>
         <a class="maison__tile" href="https://www.saksabitidacerimonia.it/musani-couture-abiti-da-cerimonia-donna/" target="_blank" rel="noopener">
@@ -140,7 +144,7 @@
     <!-- 8 · VOICE -->
     <section class="voice">
       <figure>
-        <img src="assets/img/coppia-invitati.webp" alt="Coppia di invitati in abito da cerimonia al tramonto" loading="lazy">
+        <img src="assets/img/coppia-invitati.webp" srcset="assets/img/coppia-invitati-800.webp 800w, assets/img/coppia-invitati.webp 1400w" sizes="(max-width: 860px) 100vw, 40vw" decoding="async" alt="Coppia di invitati in abito da cerimonia al tramonto" loading="lazy">
       </figure>
       <blockquote>
         <p data-split>“L'abito ha riscosso un enorme successo, ho ricevuto tantissimi complimenti.”</p>
@@ -170,7 +174,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-  <script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }</script>
+  <script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js" } }</script>
   <script type="module" src="main.js"></script>
 </body>
 </html>

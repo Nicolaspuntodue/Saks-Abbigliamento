@@ -1,5 +1,3 @@
-import * as THREE from 'three';
-
 const root = document.documentElement;
 root.classList.add('js');
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -14,12 +12,14 @@ const darkEls = $$('.statement, .atelier');
    WebGL silk — one draped satin plane behind the page.
    Scroll moves the folds and tilts the cloth; dark sections turn it "vino".
 ------------------------------------------------------------------- */
+const initSilk = (THREE) => {
 const canvas = $('#silk');
 let renderer = null;
 try {
-  renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'low-power' });
+  renderer = new THREE.WebGLRenderer({ canvas, antialias: false, powerPreference: 'low-power' });
 } catch {
   root.classList.add('no-webgl');
+  return;
 }
 
 const LIGHT = {
@@ -31,7 +31,7 @@ const DARK = {
   tint: new THREE.Color('#74303D'), sheen: new THREE.Color('#E8C9A8'),
 };
 
-if (renderer) {
+{
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(35, innerWidth / innerHeight, 0.1, 50);
   camera.position.set(0, 0, 7);
@@ -97,13 +97,14 @@ if (renderer) {
       }`,
   });
 
-  const seg = small ? [110, 80] : [200, 140];
+  const seg = small ? [80, 60] : [160, 110];
   const cloth = new THREE.Mesh(new THREE.PlaneGeometry(20, 14, ...seg), material);
   cloth.rotation.set(-.45, 0, -.12);
   scene.add(cloth);
 
   const resize = () => {
-    renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
+    // the silk is soft: render it below screen resolution and let CSS upscale (big GPU saving)
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5) * (small ? .5 : .7));
     renderer.setSize(innerWidth, innerHeight, false);
     camera.aspect = innerWidth / innerHeight;
     camera.updateProjectionMatrix();
@@ -123,7 +124,7 @@ if (renderer) {
     let d = 0;
     for (const el of darkEls) {
       const r = el.getBoundingClientRect();
-      const inn = clamp01((innerHeight * .8 - r.top) / (innerHeight * .4));
+      const inn = clamp01((innerHeight * .55 - r.top) / (innerHeight * .35)); // turn dark only once the section owns the screen
       const out = clamp01((r.bottom - innerHeight * .15) / (innerHeight * .5));
       d = Math.max(d, Math.min(inn, out));
     }
@@ -137,8 +138,10 @@ if (renderer) {
   const clock = new THREE.Clock();
   let dark = 0;
   const bg = new THREE.Color();
+  let frame = 0;
   gsap.ticker.add(() => {
-    const dt = Math.min(clock.getDelta(), .05);
+    if (small && frame++ % 2) return; // ~30fps on phones is plenty for slow cloth
+    const dt = Math.min(clock.getDelta(), .1);
     if (!visible()) return; // canvas fully covered by solid sections — skip the draw
     if (!reduce) uniforms.uTime.value += dt;
     const s = reduce ? 0 : scrollY / innerHeight;
@@ -157,8 +160,13 @@ if (renderer) {
     cloth.rotation.z = -.12 + Math.sin(p * .5) * .08;
     camera.position.y = -Math.min(p, 4) * .08;
     renderer.render(scene, camera);
+    if (!canvas.classList.contains('is-on')) canvas.classList.add('is-on');
   });
 }
+};
+// three.js is loaded off the critical path: the page and its animations start immediately,
+// the silk fades in as soon as the library arrives
+import('three').then(initSilk).catch(() => root.classList.add('no-webgl'));
 
 /* ------------------------------------------------------------------
    Scroll choreography (GSAP + Lenis) — Vero-style pinned scenes
@@ -201,10 +209,11 @@ if (reduce) {
   marquee.pause();
 } else {
   const lenis = new Lenis({ lerp: .1 });
-  lenis.on('scroll', (e) => {
-    ScrollTrigger.update();
-    gsap.to(marquee, { timeScale: 1 + Math.min(Math.abs(e.velocity) * .12, 5), duration: .3, overwrite: true });
-    gsap.to(marquee, { timeScale: 1, duration: 1.2, delay: .3 });
+  window.lenis = lenis; // handy for QA from the console
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add(() => {
+    const target = 1 + Math.min(Math.abs(lenis.velocity) * .12, 5);
+    marquee.timeScale(marquee.timeScale() + (target - marquee.timeScale()) * .1);
   });
   gsap.ticker.add((t) => lenis.raf(t * 1000));
   gsap.ticker.lagSmoothing(0);
@@ -216,9 +225,19 @@ if (reduce) {
   }));
 
   /* 1 · HERO — intro, then the photo folds into an atelier arch */
-  gsap.from('.hero__title .mask > span', { yPercent: 110, duration: 1.6, ease: 'expo.out', stagger: .14, delay: .2 });
-  gsap.from('.hero__frame img', { scale: 1.35, duration: 2.4, ease: 'expo.out' });
-  gsap.from('.hero__meta', { opacity: 0, duration: 1.2, delay: .9 });
+  lenis.stop();
+  const intro = gsap.timeline();
+  intro
+    .from('.loader img', { opacity: 0, y: 12, duration: .6, ease: 'power3.out' })
+    .to('.loader__bar', { scaleX: 1, duration: .7, ease: 'power2.inOut' }, '<.1')
+    .to('.loader', { yPercent: -100, duration: 1, ease: 'expo.inOut' })
+    .call(() => lenis.start(), null, '<.5') // scrolling unlocks as soon as the curtain lifts
+    .from('.hero__frame img', { scale: 1.35, duration: 2.2, ease: 'expo.out' }, '<.25')
+    .from('.hero__title .mask > span', { yPercent: 110, duration: 1.5, ease: 'expo.out', stagger: .14 }, '<.3')
+    .from('.hero__meta', { opacity: 0, duration: 1 }, '<.5')
+    .set('.loader', { display: 'none' });
+
+  gsap.to('.progress', { scaleX: 1, ease: 'none', scrollTrigger: { start: 0, end: 'max', scrub: .3 } });
 
   const arch = small
     ? 'inset(26% 16% 20% 16% round 999px 999px 0px 0px)'
@@ -228,7 +247,7 @@ if (reduce) {
   });
   heroTL
     .fromTo('.hero__frame', { clipPath: 'inset(0% 0% 0% 0% round 0px 0px 0px 0px)' }, { clipPath: arch, ease: 'power2.inOut' }, 0)
-    .to('.hero__frame img', { scale: 1, ease: 'none' }, 0)
+    .to('.hero__frame img', { scale: 1, yPercent: small ? 16 : 9, ease: 'power2.inOut' }, 0) // slide the face into the arch
     .to('.hero__frame', { '--ov': 0, ease: 'none' }, 0)
     .to('.hero', { color: '#231A15', ease: 'none', duration: .5 }, .25)
     .to('.hero__l1', { scale: .5, transformOrigin: '0% 0%', ease: 'power2.inOut' }, 0)
@@ -278,23 +297,21 @@ if (reduce) {
     scrollTrigger: { trigger: '.occasioni', start: 'top 70%' },
   });
 
-  /* 5 · COLLAGE — floating photos at different depths */
-  $$('.collage__f').forEach((f) => {
-    const speed = parseFloat(f.dataset.speed);
-    gsap.fromTo(f, { yPercent: -speed * 70 }, {
-      yPercent: speed * 70, ease: 'none',
-      scrollTrigger: { trigger: '.collage', start: 'top bottom', end: 'bottom top', scrub: true },
-    });
-    gsap.fromTo(f, { clipPath: 'inset(100% 0% 0% 0%)' }, {
-      clipPath: 'inset(0% 0% 0% 0%)', duration: 1.6, ease: 'expo.out',
-      scrollTrigger: { trigger: f, start: 'top 90%' },
-    });
-    gsap.from(f.firstElementChild, { scale: 1.3, duration: 2, ease: 'expo.out', scrollTrigger: { trigger: f, start: 'top 90%' } });
+  /* 5 · COLLAGE — pinned: the four photos drift in and settle around the headline */
+  const colTL = gsap.timeline({
+    scrollTrigger: { trigger: '.collage', pin: true, start: 'top top', end: '+=110%', scrub: 1 },
   });
-  gsap.to(words($('[data-words]')), {
-    opacity: 1, stagger: .1, ease: 'none',
-    scrollTrigger: { trigger: '.collage__text', start: 'top 80%', end: 'bottom 45%', scrub: true },
+  const drift = [[-30, 40, -6], [30, -35, 5], [-25, -40, 4], [25, 45, -5]];
+  $$('.collage__f').forEach((f, i) => {
+    const [x, y, r] = drift[i];
+    colTL
+      .fromTo(f, { xPercent: x, yPercent: y, rotate: r, clipPath: 'inset(100% 0% 0% 0%)' },
+        { xPercent: 0, yPercent: 0, rotate: 0, clipPath: 'inset(0% 0% 0% 0%)', duration: 1, ease: 'power3.out' }, i * .12)
+      .fromTo(f.firstElementChild, { scale: 1.35 }, { scale: 1, duration: 1, ease: 'power3.out' }, '<');
   });
+  colTL
+    .to(words($('[data-words]')), { opacity: 1, stagger: .04, duration: .3, ease: 'none' }, .45)
+    .to({}, { duration: .25 });
 
   /* 6 · 0 → 75 */
   const count = $('[data-count]');
@@ -341,7 +358,7 @@ const nav = $('.nav');
 const lightAtTop = $$('.statement, .atelier, .footer, .seq__pin');
 const heroEl = $('.hero');
 const seqPin = $('.seq__pin');
-gsap.ticker.add(() => {
+const updateNav = () => {
   const overHero = heroST ? heroST.progress < .45 && heroEl.getBoundingClientRect().bottom > 40 : heroEl.getBoundingClientRect().bottom > 40;
   const overEss = essST ? essST.isActive && essST.progress > .55 : false;
   const overDark = lightAtTop.some((el) => {
@@ -352,7 +369,10 @@ gsap.ticker.add(() => {
   nav.classList.toggle('nav--light', overHero || overEss || overDark);
   nav.classList.toggle('nav--photo', overHero || overEss || overSeq); // no veil on top of full-bleed photos
   nav.classList.toggle('nav--scrolled', scrollY > 60);
-});
+};
+addEventListener('scroll', updateNav, { passive: true });
+addEventListener('resize', updateNav);
+ScrollTrigger.addEventListener('refresh', updateNav);
 
 // pins were created in page order, but re-sort so every trigger accounts for the pin spacing above it
 ScrollTrigger.sort();
