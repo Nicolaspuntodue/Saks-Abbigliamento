@@ -1,4 +1,6 @@
 const root = document.documentElement;
+// CDN libs missing (blocked network, old browser): stop here and leave the static page visible
+if (!window.gsap || !window.ScrollTrigger || !window.Lenis) throw new Error('animation libs unavailable');
 root.classList.add('js');
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const small = innerWidth < 860;
