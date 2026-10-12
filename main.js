@@ -185,4 +185,9 @@ if (!touch) $$('.gallery li').forEach((li, i) => gsap.fromTo(li, { yPercent: 0 }
 
 /* fonts and lazy images change heights — re-measure once they settle */
 document.fonts?.ready.then(() => ScrollTrigger.refresh());
-addEventListener('load', () => ScrollTrigger.refresh());
+addEventListener('load', () => {
+  ScrollTrigger.refresh();
+  // deep links from servizi.html (index.html#occasioni…): jump once pins have their real size
+  const t = location.hash && document.getElementById(location.hash.slice(1));
+  if (t) lenis ? lenis.scrollTo(t, { immediate: true }) : t.scrollIntoView();
+});

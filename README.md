@@ -25,3 +25,8 @@ python3 -m http.server 5173
 ## Da verificare col cliente
 - Orari (presi da matrimonio.com, potrebbero essere vecchi).
 - Uso della citazione di Paola (testimonianza pubblicata sul loro sito).
+
+## Pagina Servizi (`servizi.html`)
+Pagina semplice, senza animazioni pesanti: indice fisso, servizi per persona (sposo, donna, bambino, feste, su misura, taglia 75) ognuno con link WhatsApp precompilato, "come funziona" in 3 passi, testimonianza, FAQ.
+Riferimenti: Janine Atelier (servizi per persona + WhatsApp), Carlo Pignatelli boutique Milano (percorso in 3 passi), Alan David NYC (processo, FAQ, CTA ripetute).
+Da verificare col cliente: servizio bambino (età/occasioni), tempi di consegna, eventuale noleggio o accessori.
