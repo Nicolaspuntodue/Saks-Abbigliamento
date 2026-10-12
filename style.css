@@ -110,13 +110,13 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 .band.b3 { left: 0; right: 22vw; }
 .band img { object-position: 50% 22%; }
 .process__panel {
-  position: absolute; inset: 0; background: linear-gradient(to bottom, var(--bg) 0%, #d9d5d0 45%, var(--stone) 100%);
+  position: absolute; inset: 0; background: linear-gradient(to bottom, #e4ded7 0%, #b3aaa1 55%, #7d736a 100%);
   display: grid; place-items: center;
 }
-.shot { position: absolute; left: 50%; top: 46%; width: clamp(220px, 26vw, 400px); aspect-ratio: 4 / 5; translate: -50% -50%; background: transparent; }
+.shot { position: absolute; left: 50%; top: 46%; width: clamp(220px, 26vw, 400px); aspect-ratio: 4 / 5; translate: -50% -50%; background: transparent; box-shadow: 0 30px 60px rgba(24, 22, 21, .22); }
 .shot img { object-position: 50% 20%; }
 .process__dots { position: absolute; left: var(--gut); top: 50%; translate: 0 -50%; margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
-.process__dots li { width: 5px; height: 5px; rotate: 45deg; background: rgba(255, 255, 255, .45); transition: background .4s, scale .4s; }
+.process__dots li { width: 6px; height: 6px; rotate: 45deg; background: rgba(255, 255, 255, .5); transition: background .4s, scale .4s; }
 .process__dots li.on { background: #fff; scale: 1.4; }
 .process__line {
   position: absolute; left: 0; bottom: clamp(26px, 6svh, 60px); white-space: nowrap; color: #fff;
@@ -143,15 +143,19 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 .ed-quote cite { font-style: normal; font-size: 13px; text-transform: uppercase; letter-spacing: .03em; text-align: center; }
 
 /* ---------- 6 · occasioni ---------- */
-.gallery { list-style: none; margin: 0; padding: clamp(20px, 4vw, 60px) var(--gut) 0; display: grid; grid-template-columns: repeat(5, 1fr); row-gap: clamp(40px, 5vw, 80px); }
-.gallery li { display: grid; justify-items: center; gap: 12px; }
-.gallery li:nth-child(5n + 1) { justify-items: start; }
-.gallery li:nth-child(5n) { justify-items: end; }
-.gallery figure { width: clamp(96px, 11vw, 170px); aspect-ratio: 4 / 5; }
+.gallery { list-style: none; margin: 0; padding: clamp(20px, 4vw, 60px) var(--gut) clamp(60px, 8vw, 120px); display: grid; grid-template-columns: repeat(5, 1fr); column-gap: clamp(10px, 1.4vw, 20px); row-gap: clamp(40px, 5vw, 80px); counter-reset: occ; }
+.gallery li { display: grid; align-content: start; gap: 12px; counter-increment: occ; }
+.gallery li:nth-child(5n + 2), .gallery li:nth-child(5n + 4) { margin-top: clamp(40px, 7vw, 120px); }
+.gallery figure { width: 100%; aspect-ratio: 4 / 5; }
 .gallery figure img { transition: transform 1.2s var(--ease); }
-.gallery li:hover img { transform: scale(1.08); }
-.gallery span { font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
-.brands { max-width: 64ch; margin: clamp(60px, 8vw, 120px) auto 0; padding: 0 var(--gut); text-align: center; font-size: 13px; letter-spacing: .03em; text-transform: uppercase; color: var(--mute); line-height: 1.9; }
+.gallery li:hover img { transform: scale(1.06); }
+.gallery span { font-size: 12px; text-transform: uppercase; letter-spacing: .04em; border-top: 1px solid var(--line); padding-top: 10px; }
+.gallery span::after { content: counter(occ, decimal-leading-zero); float: right; color: var(--mute); }
+.marquee { overflow: hidden; padding: clamp(28px, 4vw, 56px) 0; border-block: 1px solid var(--line); }
+.marquee__track { display: flex; width: max-content; will-change: transform; }
+.marquee__track > div { display: flex; }
+.marquee span { padding-right: clamp(36px, 5vw, 80px); font-size: clamp(2rem, 5vw, 5rem); line-height: 1; text-transform: uppercase; letter-spacing: -.01em; white-space: nowrap; }
+.marquee span:nth-child(even) { font-style: italic; text-transform: none; color: var(--mute); }
 
 /* ---------- 7 · poem ---------- */
 .poem { position: relative; padding: clamp(140px, 22vh, 240px) 0 clamp(80px, 12vh, 140px); overflow: hidden; }
@@ -208,9 +212,9 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
   .ed-b, .ed-d { grid-column: 1; grid-row: auto; }
   .ed-c, .ed-e { grid-column: 2; grid-row: auto; }
   .ed-text, .ed-cta, .ed-quote { grid-column: 1 / -1; grid-row: auto; }
-  .gallery { grid-template-columns: repeat(3, 1fr); }
-  .gallery li, .gallery li:nth-child(n) { justify-items: center; }
-  .gallery figure { width: 26vw; }
+  .gallery { grid-template-columns: 1fr 1fr; }
+  .gallery li:nth-child(n) { margin-top: 0; }
+  .gallery li:nth-child(even) { margin-top: 48px; }
   .poem__text { font-size: 9.2vw; }
   .pl--split { column-gap: 17vw; }
   .coin { width: 48px; margin-left: -24px; }

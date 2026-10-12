@@ -52,7 +52,7 @@ const fill = { '--p': 1, ease: 'power2.inOut' };
   const pin = $('.hero__pin');
   gsap.timeline({
     scrollTrigger: {
-      trigger: pin, start: 'top top', end: '+=150%', pin: true, scrub: 0.8, invalidateOnRefresh: true,
+      trigger: pin, start: 'top top', end: '+=150%', pin: true, scrub: 0.8, invalidateOnRefresh: true, refreshPriority: 1, // pins measure first so later triggers include their spacing
       onUpdate: (s) => lightNav(s.progress > 0.45 && s.progress < 1),
       onLeave: () => lightNav(false),
     },
@@ -85,12 +85,12 @@ $$('[data-slice]').forEach((f) => {
   const pin = $('.essenza__pin');
   gsap.timeline({
     scrollTrigger: {
-      trigger: pin, start: 'top top', end: '+=150%', pin: true, scrub: 0.8, invalidateOnRefresh: true,
+      trigger: pin, start: 'top top', end: '+=150%', pin: true, scrub: 0.8, invalidateOnRefresh: true, refreshPriority: 1, // pins measure first so later triggers include their spacing
       onUpdate: (s) => lightNav(s.progress > 0.55 && s.progress < 1),
       onLeave: () => lightNav(false),
     },
   })
-    .to('.essenza__pin > .eyebrow, .essenza__pin > .display', { yPercent: -30, opacity: 0, duration: 0.5, ease: 'power1.in' }, 0.25)
+    .to('.essenza__pin > .eyebrow, .essenza__pin > .display', { yPercent: -40, opacity: 0, duration: 0.35, ease: 'power1.in' }, 0)
     .to('.essenza__media', { ...fill, duration: 1 }, 0)
     .fromTo('.essenza__media img', { scale: 1.2 }, { scale: 1, duration: 1, ease: 'none' }, 0)
     .to({}, { duration: 0.3 });
@@ -113,26 +113,26 @@ $$('[data-slice]').forEach((f) => {
     dots.forEach((d, k) => d.classList.toggle('on', k === i));
   };
 
-  gsap.set(shots, { opacity: 0, scale: 1.08 });
+  gsap.set(shots, { clipPath: 'inset(100% 0% 0% 0%)' });
+  gsap.set($$('img', pin).filter((i) => i.closest('.shot')), { scale: 1.25 });
   gsap.set('.process__panel', { clipPath: 'inset(100% 0% 0% 0%)' });
 
   const tl = gsap.timeline({
     defaults: { ease: 'none' },
     scrollTrigger: {
-      trigger: pin, start: 'top top', end: '+=320%', pin: true, scrub: 0.8, invalidateOnRefresh: true,
+      trigger: pin, start: 'top top', end: '+=320%', pin: true, scrub: 0.8, invalidateOnRefresh: true, refreshPriority: 1, // pins measure first so later triggers include their spacing
       onUpdate: (s) => setStep(s.progress < 0.62 ? 0 : s.progress < 0.82 ? 1 : 2),
     },
   });
   $$('.band').forEach((b, i) => tl.to(b, { y: () => -(pin.clientHeight + b.offsetHeight * 1.2), duration: 1.1 }, i * 0.28));
   tl.to('.process__panel', { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.5, ease: 'power2.inOut' }, 1.1)
     .fromTo(line, { x: () => pin.clientWidth * 0.5 }, { x: xFor(0), duration: 0.5, ease: 'power2.out' }, 1.3)
-    .to(shots[0], { opacity: 1, scale: 1, duration: 0.4 }, 1.35)
     .to(line, { x: xFor(1), duration: 0.5, ease: 'power2.inOut' }, 2.1)
-    .to(shots[0], { opacity: 0, duration: 0.3 }, 2.1)
-    .to(shots[1], { opacity: 1, scale: 1, duration: 0.4 }, 2.2)
-    .to(line, { x: xFor(2), duration: 0.5, ease: 'power2.inOut' }, 2.75)
-    .to(shots[1], { opacity: 0, duration: 0.3 }, 2.75)
-    .to(shots[2], { opacity: 1, scale: 1, duration: 0.4 }, 2.85)
+    .to(line, { x: xFor(2), duration: 0.5, ease: 'power2.inOut' }, 2.75);
+  [1.35, 2.15, 2.8].forEach((at, i) => tl
+    .to(shots[i], { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.45, ease: 'power3.inOut' }, at)
+    .to($('img', shots[i]), { scale: 1, duration: 0.6, ease: 'power2.out' }, at));
+  tl
     .to({}, { duration: 0.35 });
 }
 
@@ -142,6 +142,27 @@ ScrollTrigger.batch('.gallery li', {
   start: 'top 92%',
   onEnter: (els) => gsap.to(els, { opacity: 1, y: 0, duration: 1.1, stagger: 0.07, ease: 'expo.out' }),
 });
+
+// yPercent, so it stacks with the batch reveal's y instead of fighting it
+if (!touch) $$('.gallery li').forEach((li, i) => gsap.fromTo(li, { yPercent: 0 }, {
+  yPercent: [0, -14, -6, -20, -9][i % 5], ease: 'none',
+  scrollTrigger: { trigger: '.gallery', start: 'top bottom', end: 'bottom top', scrub: 0.6 },
+}));
+
+/* ---------- brands marquee — drifts on its own, speeds up and reverses with scroll ---------- */
+{
+  const loop = gsap.to('.marquee__track', { xPercent: -50, duration: 40, ease: 'none', repeat: -1 }).totalTime(4000); // start deep in the loop so reversing never hits time 0
+  let dir = 1;
+  ScrollTrigger.create({
+    trigger: '.marquee', start: 'top bottom', end: 'bottom top',
+    onToggle: (s) => (s.isActive ? loop.play() : loop.pause()),
+    onUpdate: (s) => {
+      dir = s.direction;
+      gsap.to(loop, { timeScale: dir * (1 + Math.min(Math.abs(s.getVelocity()) / 300, 6)), duration: 0.2, overwrite: true })
+        .then(() => gsap.to(loop, { timeScale: dir, duration: 1 }));
+    },
+  });
+}
 
 /* ---------- 7 · poem — lines slide together, the medallion falls and spins into the gap ---------- */
 {
